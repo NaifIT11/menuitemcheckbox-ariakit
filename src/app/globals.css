@@ -2,20 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+@keyframes button-popup {
+    0% {
+        scale: .9
+    }
+
+    to {
+        scale: 1.1
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+[aria-haspopup="menu"]{
+    @apply w-[fit-content] self-center inline-flex justify-between items-center gap-4 bg-green-500 rounded text-white font-medium px-4 py-2 active:animate-[button-popup_1s_ease-in-out]
+}
+
+[role="menu"]{
+    position: absolute;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    min-width: 180px;
+    flex-direction: column;
+    overscroll-behavior: contain;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: hsl(204 20% 88%);
+    background-color: white;
+    padding: 0.5rem;
+    color: black;
+    --clr-green-500: #22C55E;
+    box-shadow:
+      0 10px 15px -3px var(--clr-green-500),
+      0 4px 6px -4px var(--clr-green-500);
+    outline: none !important;
+    max-height: max-content;
+    overflow: visible;
   }
+
+  
+[role="menuitemcheckbox"]{
+    cursor: pointer;
+    display: flex;
+    scroll-margin: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    outline: none !important;
+    display: inline-flex;
+    justify-content: space-between;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+[aria-checked="true"] > *{
+    opacity: 1;
 }
+  
+
